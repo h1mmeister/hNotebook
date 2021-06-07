@@ -1,6 +1,7 @@
 import * as esbuild from "esbuild-wasm";
 import { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
+import { unpkgPathPlugin } from "./plugins/unpkg-path-plugin";
 
 const App = () => {
   const ref = useRef<any>();
@@ -25,10 +26,12 @@ const App = () => {
     if (!ref.current) {
       return;
     }
-    // we are transpiling the code written in the text area
-    const result = await ref.current.transform(input, {
-      loader: "jsx",
-      target: "es2015",
+    // we are bundling the code written in the text area now
+    const result = await ref.current.build({
+      entryPoints: ["index.js"],
+      bundle: true,
+      write: false,
+      plugins: [unpkgPathPlugin()],
     });
 
     // setting the state for code here
