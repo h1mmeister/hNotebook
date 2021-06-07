@@ -35,7 +35,7 @@ const App = () => {
     });
 
     // setting the state for code here
-    setCode(result.code);
+    setCode(result.outputFiles[0].text);
   };
 
   return (
