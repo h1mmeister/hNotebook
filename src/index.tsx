@@ -32,6 +32,10 @@ const App = () => {
       bundle: true,
       write: false,
       plugins: [unpkgPathPlugin()],
+      define: {
+        "process.env.NODE_ENV": '"productio"',
+        global: "window",
+      },
     });
 
     // setting the state for code here
