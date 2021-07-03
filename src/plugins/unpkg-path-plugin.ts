@@ -1,10 +1,4 @@
-
 import * as esbuild from "esbuild-wasm";
-import localforage from "localforage";
-
-const fileCache = localforage.createInstance({
-  name: "fileCache",
-});
 
 export const unpkgPathPlugin = () => {
   return {
@@ -54,7 +48,6 @@ export const unpkgPathPlugin = () => {
           path: `https://unpkg.com/${args.path}`,
         };
       });
-
     },
   };
 };
