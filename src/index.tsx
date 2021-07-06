@@ -12,11 +12,6 @@ const App = () => {
   const [input, setInput] = useState("");
   const [code, setCode] = useState("");
 
-  // use useEffect to call startService only one time
-  useEffect(() => {
-    startService();
-  }, []);
-
   // initializing to use esbuild-wasm binary
   const startService = async () => {
     ref.current = await esbuild.startService({
@@ -24,6 +19,11 @@ const App = () => {
       wasmURL: "https://unpkg.com/esbuild-wasm@0.8.27/esbuild.wasm",
     });
   };
+
+  // use useEffect to call startService only one time
+  useEffect(() => {
+    startService();
+  }, []);
 
   const onClick = async () => {
     if (!ref.current) {
